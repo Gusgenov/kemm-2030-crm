@@ -14,7 +14,7 @@ type Project = {
   project_type: string
   status: string
   budget: number
-  clients: { company_name: string } | null
+  clients: { company_name: string }[] | null
 }
 
 export default function ProjectsPage() {
@@ -36,7 +36,7 @@ export default function ProjectsPage() {
       .select('id, title, project_type, status, budget, clients(company_name)')
 
     setClients(clientsData || [])
-    setProjects((projectsData as Project[]) || [])
+    setProjects((projectsData as any) || [])
   }
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export default function ProjectsPage() {
             {projects.map((p) => (
               <tr key={p.id}>
                 <td>{p.title}</td>
-                <td>{p.clients?.company_name}</td>
+                <td>{p.clients?.[0]?.company_name || '-'}</td>
                 <td>
                   <button
                     onClick={() => deleteProject(p.id)}
