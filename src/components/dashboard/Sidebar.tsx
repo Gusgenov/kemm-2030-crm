@@ -4,11 +4,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const items = [
+  
   { href: '/dashboard', label: 'Дашборд' },
   { href: '/clients', label: 'Клиенты' },
   { href: '/projects', label: 'Проекты' },
   { href: '/tasks', label: 'Задачи' },
   { href: '/materials', label: 'Материалы' },
+  { href: '/requests', label: 'Заявки' },
 ]
 
 export default function Sidebar() {
