@@ -9,7 +9,9 @@ export default function ContactsPage() {
   const supabase = createClient()
 
   const [name, setName] = useState('')
+  const [company, setCompany] = useState('')
   const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
 
   async function handleSubmit(e: React.FormEvent) {
@@ -17,12 +19,17 @@ export default function ContactsPage() {
 
     await supabase.from('requests').insert({
       name,
+      company,
       phone,
+      email,
       message,
     })
 
+    // очищаем ВСЕ поля
     setName('')
+    setCompany('')
     setPhone('')
+    setEmail('')
     setMessage('')
 
     alert('Заявка отправлена')
@@ -42,9 +49,23 @@ export default function ContactsPage() {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Ваше имя / компания"
+            placeholder="Ваше имя"
             className="w-full border px-4 py-3 rounded-xl"
             required
+          />
+
+          <input
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder="Компания"
+            className="w-full border px-4 py-3 rounded-xl"
+          />
+
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className="w-full border px-4 py-3 rounded-xl"
           />
 
           <input
