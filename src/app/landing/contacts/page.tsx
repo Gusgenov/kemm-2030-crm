@@ -15,10 +15,10 @@ export default function ContactsPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
-    await supabase.from('clients').insert({
-      company_name: name,
+    await supabase.from('requests').insert({
+      name,
       phone,
-      notes: message,
+      message,
     })
 
     setName('')
